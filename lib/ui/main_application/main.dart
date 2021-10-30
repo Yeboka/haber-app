@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:haber_app/ui/pages/events_page.dart';
+import 'package:haber_app/ui/pages/home_page.dart';
+import 'package:haber_app/ui/pages/messenger_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -12,39 +15,34 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Haber",
-      home: HomePage(),
+      // theme: CustomTheme.lightTheme,
+      home: MainPage(),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class MainPage extends StatefulWidget {
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _HomePageState();
+    return _MainPageState();
   }
 }
 
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+class _MainPageState extends State<MainPage> {
+  final controller = PageController();
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        // elevation: 0,
+        // backgroundColor: Colors.transparent,
         title: const Center(
-          child: Text("Haber",
-            style: TextStyle(color: Colors.black),),
+          child: Text("Haber"),
         ),
         actions: <Widget>[
           IconButton(
@@ -55,34 +53,48 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text(
+              'Drawer Header',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                // set State
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {
+              // set State
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    ),
+      body: PageView(
+        children: const [
+          HomePage(),
+          MessengerPage(),
+          EventsPage()
+        ],
+        scrollDirection: Axis.horizontal,
+        controller: controller,
+        onPageChanged: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
@@ -96,8 +108,6 @@ class _HomePageState extends State<HomePage> {
             label: 'Events',
           ),
         ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
       ),
     );
   }
