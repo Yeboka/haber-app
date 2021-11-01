@@ -36,6 +36,7 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
+    const _physics = ScrollPhysics();
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -87,6 +88,10 @@ class _MainPageState extends State<MainPage> {
         ],
         scrollDirection: Axis.horizontal,
         controller: controller,
+        reverse: false,
+
+        physics: _physics,
+        allowImplicitScrolling: true,
         onPageChanged: (index) {
           setState(() {
             _currentIndex = index;
@@ -94,11 +99,14 @@ class _MainPageState extends State<MainPage> {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        // fixedColor: Colors.grey,
+        selectedItemColor: Colors.blue,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+            label: "Haber",
+            ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message),
             label: 'Messages',
@@ -108,6 +116,12 @@ class _MainPageState extends State<MainPage> {
             label: 'Events',
           ),
         ],
+        onTap: (index) {
+          setState(() {
+            controller.jumpToPage(index);
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }
