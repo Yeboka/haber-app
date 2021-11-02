@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:haber_app/ui/routes_pages/challenges_page.dart';
-import 'package:haber_app/ui/routes_pages/help_student_page.dart';
-import 'package:haber_app/ui/routes_pages/lost_and_found_page.dart';
-import 'package:haber_app/ui/routes_pages/market_place.dart';
+import 'package:haber_app/ui/pages/routes_pages/challenges_page.dart';
+import 'package:haber_app/ui/pages/routes_pages/help_student_page.dart';
+import 'package:haber_app/ui/pages/routes_pages/lost_and_found_page.dart';
+import 'package:haber_app/ui/pages/routes_pages/market_place.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

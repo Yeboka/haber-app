@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:haber_app/ui/pages/events_page.dart';
 import 'package:haber_app/ui/pages/home_page.dart';
 import 'package:haber_app/ui/pages/messenger_page.dart';
+import 'package:haber_app/ui/pages/routes_pages/profile_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -48,48 +49,46 @@ class _MainPageState extends State<MainPage> {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                null;
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ProfilePage()));
               },
               icon: const Icon(Icons.person))
         ],
       ),
       drawer: Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-            ),
-            child: Text(
-              'Drawer Header',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {
-              // set State
-              Navigator.pop(context);
-            },
-          ),
-        ],
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                // set State
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
-    ),
       body: PageView(
-        children: const [
-          HomePage(),
-          MessengerPage(),
-          EventsPage()
-        ],
+        children: const [HomePage(), MessengerPage(), EventsPage()],
         scrollDirection: Axis.horizontal,
         controller: controller,
         reverse: false,
-
         physics: _physics,
         allowImplicitScrolling: true,
         onPageChanged: (index) {
@@ -106,7 +105,7 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: "Haber",
-            ),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message),
             label: 'Messages',
