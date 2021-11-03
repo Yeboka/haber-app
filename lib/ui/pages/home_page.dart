@@ -46,24 +46,73 @@ class _HomePageState extends State {
                     builder: (context) => const HelpStudentPage()))
           }
     };
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Text(
-            "Applications",
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+    return ListView(
+        // Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        // // crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Latest events",
+              style: TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+            ),
           ),
-        ),
-        SizedBox(
-            height: itemHeight,
-            width: double.infinity,
-            child: functionTile(itemHeight, itemWidth, manageRouting)),
-      ],
+          SizedBox(
+            height: 150,
+            child: ListView.builder(
+              itemCount: 5,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: getLatestEvents(),
+                );
+              },
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text(
+              "Applications",
+              style: TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+          ),
+          SizedBox(
+              height: itemHeight,
+              width: double.infinity,
+              child: functionTile(itemHeight, itemWidth, manageRouting)),
+        ],
+
+    );
+  }
+
+  Widget getLatestEvents() {
+    return SizedBox(
+      width: 175,
+      height: 100,
+      child: Column(
+        children: [
+          Container(
+            width: 175,
+            height: 100,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("assets/images/icons/red_color.png"))),
+          ),
+          const Text(
+            "Data",
+            style: TextStyle(
+              fontSize: 20,
+            ),
+            textAlign: TextAlign.end,
+          )
+        ],
+      ),
     );
   }
 
@@ -77,7 +126,7 @@ class _HomePageState extends State {
   Widget functionTile(
       var itemHeight, var itemWidth, Map<String, Function> manageRouting) {
     return GridView.count(
-      primary: true,
+      primary: false,
       crossAxisSpacing: 1,
       childAspectRatio: itemHeight / itemWidth,
       mainAxisSpacing: 1,

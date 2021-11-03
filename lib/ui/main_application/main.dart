@@ -32,12 +32,14 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  final homePages = const [HomePage(), MessengerPage(), EventsPage()];
+
   final controller = PageController();
+  final _physics = const ScrollPhysics();
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    const _physics = ScrollPhysics();
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -85,7 +87,7 @@ class _MainPageState extends State<MainPage> {
         ),
       ),
       body: PageView(
-        children: const [HomePage(), MessengerPage(), EventsPage()],
+        children: homePages,
         scrollDirection: Axis.horizontal,
         controller: controller,
         reverse: false,
