@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:haber_app/ui/widgets/utils.dart';
+import 'package:haber_app/ui/widgets/event.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class EventsPage extends StatefulWidget {
