@@ -1,10 +1,14 @@
-# haber_app
+# Haber App
 
-A new Flutter project.
+Application for students to facilitate successful interaction.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+In the application, you can view the events of the university, participate in them. For a paid event, the student will be able to pay in the application. There will also be applications such as:
+- Marketplace
+- Lost and found
+- Challenges
+- Student assistance
 
 A few resources to get you started if this is your first Flutter project:
 
